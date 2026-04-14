@@ -1,0 +1,9 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Détails de la filière{% endblock %}
+
+{% block body %}
+    <h1>Détails de la filière #{{ id }}</h1>
+    <p>Ici s'afficheront les descriptions, débouchés et conditions d'admission.</p>
+    <a href="{{ path('app_filiere_index') }}">Retour à la liste</a>
+{% endblock %}

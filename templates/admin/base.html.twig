@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Administration - SchoolPrepar{% endblock %}</title>
+    </head>
+    <body style="display: flex; min-height: 100vh; margin: 0;">
+        <aside style="width: 250px; background: #f4f4f4; padding: 20px; border-right: 1px solid #ccc;">
+            {% include 'admin/partials/aside.html.twig' %}
+        </aside>
+        
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <header style="padding: 20px; border-bottom: 1px solid #ccc;">
+                {% include 'admin/partials/nav.html.twig' %}
+            </header>
+            
+            <main style="padding: 20px; flex: 1;">
+                {% block body %}{% endblock %}
+            </main>
+            
+            <footer style="padding: 20px; border-top: 1px solid #ccc;">
+                {% include 'admin/partials/footer.html.twig' %}
+            </footer>
+        </div>
+    </body>
+</html>

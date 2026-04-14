@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}SchoolPrepar - Élèves{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            {% include 'front/partials/nav.html.twig' %}
+        </header>
+        
+        <main style="padding: 20px;">
+            {% block body %}{% endblock %}
+        </main>
+        
+        <footer>
+            {% include 'front/partials/footer.html.twig' %}
+        </footer>
+    </body>
+</html>

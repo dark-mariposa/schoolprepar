@@ -1,0 +1,15 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Nos Filières{% endblock %}
+
+{% block body %}
+    <h1>Liste des Filières</h1>
+    <ul>
+        {% for filiere in filieres %}
+            <li>
+                {{ filiere.nom }} - 
+                <a href="{{ path('app_filiere_show', {'id': filiere.id}) }}">Voir les détails</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
