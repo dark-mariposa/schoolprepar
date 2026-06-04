@@ -1,7 +1,28 @@
-<nav>
-    <strong>SchoolPrepar</strong> |
-    <a href="{{ path('app_home') }}">Accueil</a> -
-    <a href="{{ path('app_filiere_index') }}">Filières</a> -
-    <a href="{{ path('app_etablissement_index') }}">Établissements</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary fs-3" href="{{ path('app_front_home') }}">
+        🎓 School<span class="text-warning">Prepar</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item px-2">
+          <a class="nav-link fw-semibold text-dark" href="{{ path('app_front_home') }}">Accueil</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link fw-semibold text-muted hover-primary" href="{{ path('app_front_filiere_index') }}">Filières</a>
+        </li>
+        <li class="nav-item px-2 text-nowrap">
+          <a class="nav-link fw-semibold text-muted" href="{{ path('app_front_etablissement_index') }}">Établissements</a>
+        </li>
+        <li class="nav-item ms-3">
+          <a href="{{ path('app_admin_dashboard') }}" class="btn btn-primary px-4 rounded-pill shadow-sm fw-bold">
+            🔑 Administration
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<hr>

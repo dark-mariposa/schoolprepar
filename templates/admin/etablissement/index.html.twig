@@ -1,8 +1,63 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Gestion des Établissements{% endblock %}
+{% block title %}Gestion des Établissements - Admin - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Établissements</h1>
-    <p>Interface pour administrer les écoles et universités (CRUD à venir).</p>
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-extrabold text-dark h2 mb-1">🏫 Gestion des Établissements</h1>
+            <p class="text-muted small mb-0">Supervisez l'annuaire des instituts, grandes écoles et universités répertoriés.</p>
+        </div>
+        <button class="btn btn-success rounded-pill px-4 fw-bold shadow-sm" disabled>
+            ➕ Répertorier une structure
+        </button>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-secondary uppercase font-monospace small">
+                    <tr>
+                        <th class="ps-4 py-3">ID</th>
+                        <th class="py-3">Nom de l'Établissement</th>
+                        <th class="py-3">Localisation</th>
+                        <th class="py-3">Statut juridique</th>
+                        <th class="py-3 text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#1</td>
+                        <td class="fw-bold text-dark">Université de Lomé (UL)</td>
+                        <td><span class="text-danger">📍</span> Lomé</td>
+                        <td><span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill fw-bold">Public</span></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#2</td>
+                        <td class="fw-bold text-dark">École Polytechnique de Lomé (EPL)</td>
+                        <td><span class="text-danger">📍</span> Lomé</td>
+                        <td><span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill fw-bold">Public / Spécialisé</span></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#3</td>
+                        <td class="fw-bold text-dark">Institut Africain d'Administration (IAEC)</td>
+                        <td><span class="text-danger">📍</span> Lomé</td>
+                        <td><span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-bold">Privé</span></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

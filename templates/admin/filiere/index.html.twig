@@ -1,8 +1,74 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Gestion des Filières{% endblock %}
+{% block title %}Gestion des Filières - Admin - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Filières</h1>
-    <p>Interface pour ajouter, modifier ou supprimer des filières (CRUD à venir).</p>
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-extrabold text-dark h2 mb-1">⚙️ Gestion des Filières</h1>
+            <p class="text-muted small mb-0">Visualisez, modifiez et organisez les fiches de formation disponibles sur la plateforme.</p>
+        </div>
+        <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm" disabled>
+            ➕ Ajouter une filière
+        </button>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-secondary uppercase font-monospace small">
+                    <tr>
+                        <th class="ps-4 py-3">ID</th>
+                        <th class="py-3">Intitulé de la Filière</th>
+                        <th class="py-3">Description Indicative</th>
+                        <th class="py-3 text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#1</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="fs-4 me-3">💻</span>
+                                <span class="fw-bold text-dark">Génie Logiciel</span>
+                            </div>
+                        </td>
+                        <td><p class="text-muted small mb-0 text-truncate" style="max-width: 400px;">Conception, développement et architecture des applications web et mobiles.</p></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" title="Modifier" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" title="Supprimer" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#2</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="fs-4 me-3">🌐</span>
+                                <span class="fw-bold text-dark">Réseaux et Télécoms</span>
+                            </div>
+                        </td>
+                        <td><p class="text-muted small mb-0 text-truncate" style="max-width: 400px;">Administration des infrastructures, routage, cloud et connectivité.</p></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" title="Modifier" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" title="Supprimer" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold">#3</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="fs-4 me-3">🛡️</span>
+                                <span class="fw-bold text-dark">Sécurité Informatique</span>
+                            </div>
+                        </td>
+                        <td><p class="text-muted small mb-0 text-truncate" style="max-width: 400px;">Protection des infrastructures, cryptographie et stratégies de cyberdéfense.</p></td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light border text-secondary me-1" title="Modifier" disabled>✏️</button>
+                            <button class="btn btn-sm btn-light border text-danger" title="Supprimer" disabled>🗑️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

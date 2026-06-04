@@ -1,8 +1,83 @@
 {% extends 'front/base.html.twig' %}
 
-{% block title %}Nos Établissements{% endblock %}
+{% block title %}Établissements Partenaires - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Liste des Établissements partenaires</h1>
-    <p>Découvrez les écoles et universités de notre réseau.</p>
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-8">
+            <h1 class="fw-extrabold text-dark display-5 mb-2">Établissements Partenaires</h1>
+            <p class="text-muted lead fs-6">Découvrez les universités, grandes écoles et instituts supérieurs de la région qui forment les leaders de demain.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-2 rounded-pill fw-bold">
+                🏢 {{ etablissements|length }} Structures Répertoriées
+            </span>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for etablissement in etablissements %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden card-etablissement transition">
+                    
+                    <div class="p-3 {% if etablissement.type == 'Privé' %}bg-success-subtle{% else %}bg-primary-subtle{% endif %} d-flex justify-content-between align-items-center">
+                        <span class="fs-4">🏫</span>
+                        <span class="badge {% if etablissement.type == 'Privé' %}bg-success{% else %}bg-primary{% endif %} rounded-pill font-monospace shadow-sm">
+                            {{ etablissement.type }}
+                        </span>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold text-dark mb-2">{{ etablissement.nom }}</h5>
+                        
+                        <p class="text-secondary small mb-3">
+                            <span class="text-danger">📍</span> <strong>Ville :</strong> {{ etablissement.ville }}
+                        </p>
+                        
+                        <p class="card-text text-muted small line-clamp mb-0">
+                            {{ etablissement.description|default('Aucune description fournie pour le moment. Consultez la fiche pour découvrir les filières disponibles dans cet institut.') }}
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                        <hr class="text-muted opacity-10 my-3">
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100 rounded-pill fw-bold py-2 transition-btn">
+                            Visiter la fiche complète
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning border-0 shadow-sm rounded-3 p-4 text-center">
+                    <span class="fs-2">🔍</span>
+                    <h5 class="mt-2 fw-bold">Aucun établissement répertorié</h5>
+                    <p class="text-muted mb-0">La liste est actuellement vide.</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        .card-etablissement {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-etablissement:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.08)!important;
+        }
+        .transition-btn {
+            transition: all 0.2s ease;
+        }
+        .transition-btn:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
 {% endblock %}

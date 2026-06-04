@@ -1,15 +1,84 @@
 {% extends 'front/base.html.twig' %}
 
-{% block title %}Nos Filières{% endblock %}
+{% block title %}Nos Filières - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Liste des Filières</h1>
-    <ul>
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-7">
+            <h1 class="fw-extrabold text-dark display-5 mb-2">Explorez nos filières</h1>
+            <p class="text-muted lead fs-6">Trouvez la formation idéale adaptée aux besoins du marché de l'emploi et à vos aspirations professionnelles.</p>
+        </div>
+        <div class="col-md-5">
+            <div class="input-group shadow-sm rounded-3">
+                <span class="input-group-text bg-white border-end-0 text-muted">🔍</span>
+                <input type="text" class="form-control border-start-0 py-2" placeholder="Rechercher une formation (ex: Génie logiciel)..." disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
         {% for filiere in filieres %}
-            <li>
-                {{ filiere.nom }} - 
-                <a href="{{ path('app_filiere_show', {'id': filiere.id}) }}">Voir les détails</a>
-            </li>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden card-filiere transition">
+                    <div class="bg-primary position-absolute" style="top: 0; left: 0; width: 4px; height: 100%;"></div>
+                    
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="bg-light p-3 rounded-3 text-primary fs-3">
+                                {% if "Logiciel" in filiere.nom or "Informatique" in filiere.nom %}
+                                    💻
+                                {% elseif "Réseaux" in filiere.nom or "Télécom" in filiere.nom %}
+                                    🌐
+                                {% elseif "IA" in filiere.nom or "Intelligence Artificielle" in filiere.nom %}
+                                    ✨
+                                {% else %}
+                                    📚
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3 py-1 small fw-bold">Licence</span>
+                        </div>
+
+                        <h4 class="card-title fw-bold text-dark mb-2">{{ filiere.nom }}</h4>
+                        <p class="card-text text-muted small line-clamp">
+                            {{ filiere.description|default('Aucune description fournie pour le moment. Découvrez les compétences clés et débouchés de cette filière en ouvrant la fiche complète.') }}
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+                        <hr class="text-muted opacity-10 my-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">⏱️ 3 ans d'études</span>
+                            <a href="{{ path('app_front_filiere_show', {'id': filiere.id|default(1)}) }}" class="btn btn-sm btn-primary px-3 rounded-pill fw-bold shadow-sm">
+                                Voir la fiche →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning border-0 shadow-sm rounded-3 p-4 text-center">
+                    <span class="fs-2">📂</span>
+                    <h5 class="mt-2 fw-bold">Aucune filière disponible</h5>
+                    <p class="text-muted mb-0">Les données n'ont pas encore été injectées depuis le contrôleur.</p>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+
+    <style>
+        .card-filiere {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-filiere:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.08)!important;
+        }
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
 {% endblock %}

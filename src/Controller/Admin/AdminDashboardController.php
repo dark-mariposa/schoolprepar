@@ -5,12 +5,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/filieres', name: 'app_admin_filiere_')]
-class AdminFiliereController extends AbstractController
+#[Route('/admin', name: 'app_admin_')]
+class AdminDashboardController extends AbstractController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'dashboard')]
     public function index(): Response
     {
-        return $this->render('admin/filiere/index.html.twig');
+        return $this->render('admin/dashboard.html.twig');
     }
 }

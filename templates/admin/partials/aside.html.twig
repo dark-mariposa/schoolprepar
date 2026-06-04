@@ -1,6 +1,19 @@
-<h3>Menu Back-Office</h3>
-<ul style="list-style-type: none; padding: 0;">
-    <li><a href="{{ path('admin_dashboard') }}">Dashboard</a></li>
-    <li><a href="{{ path('admin_filiere_index') }}">Gestion des Filières</a></li>
-    <li><a href="{{ path('admin_etablissement_index') }}">Gestion des Établissements</a></li>
-</ul>
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #212529; color: white; min-height: 100vh; width: 250px; position: fixed;">
+    <div class="p-3">
+        <h5>Espace Admin</h5>
+    </div>
+    <ul class="nav flex-column p-2">
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="{{ path('app_admin_dashboard') }}">📊 Dashboard</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="{{ path('app_admin_filiere_index') }}">⚙️ Gestion des Filières</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="{{ path('app_admin_etablissement_index') }}">🏫 Gestion des Établissements</a>
+        </li>
+        <li class="nav-item mt-4">
+            <a class="nav-link text-warning" href="{{ path('app_front_home') }}">⬅ Retour au site</a>
+        </li>
+    </ul>
+</aside>

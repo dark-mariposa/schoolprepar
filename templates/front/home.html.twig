@@ -3,6 +3,78 @@
 {% block title %}Accueil - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur SchoolPrepar</h1>
-    <p>La plateforme pour trouver votre orientation idéale.</p>
+    <div class="row align-items-center my-5 py-4">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <span class="badge bg-light text-primary border border-primary px-3 py-2 mb-3 fw-bold rounded-pill text-uppercase tracking-wider">Orientation Académique</span>
+            <h1 class="display-4 fw-extrabold text-dark mb-3 lh-sm">
+                Construisez votre <span class="text-primary text-gradient">Avenir Académique</span> dès aujourd'hui
+            </h1>
+            <p class="lead text-muted mb-4 fs-5">
+                SchoolPrepar est votre boussole pour explorer les filières d'excellence, comparer les établissements supérieurs de la région et faire le choix d'études qui vous correspond.
+            </p>
+            <div class="d-flex gap-3">
+                <a href="{{ path('app_front_filiere_index') }}" class="btn btn-primary btn-lg px-4 shadow rounded-3">
+                    🚀 Explorer les filières
+                </a>
+                <a href="{{ path('app_front_etablissement_index') }}" class="btn btn-outline-secondary btn-lg px-4 rounded-3">
+                    🏫 Voir l'annuaire
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <div class="p-5 bg-gradient bg-light border rounded-5 shadow-sm d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
+                <span class="display-1">📚</span>
+                <h3 class="mt-3 fw-bold text-secondary">Espace d'Orientation</h3>
+                <p class="text-muted text-center px-4 small">Trouvez les universités, instituts et formations qui répondent à vos aspirations professionnelles.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center my-5 g-4 bg-primary text-white p-4 rounded-4 shadow">
+        <div class="col-md-4">
+            <h2 class="fw-bold display-5 mb-1">15+</h2>
+            <p class="mb-0 text-white-50 text-uppercase small fw-bold">Filières d'Avenir</p>
+        </div>
+        <div class="col-md-4 border-start border-end border-white-20">
+            <h2 class="fw-bold display-5 mb-1">45+</h2>
+            <p class="mb-0 text-white-50 text-uppercase small fw-bold">Établissements Répertoriés</p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="fw-bold display-5 mb-1">100%</h2>
+            <p class="mb-0 text-white-50 text-uppercase small fw-bold">Accès Gratuit & Ouvert</p>
+        </div>
+    </div>
+
+    <div class="my-5 py-4">
+        <h2 class="text-center fw-bold mb-5 text-dark">Pourquoi utiliser SchoolPrepar ?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3 rounded-4">
+                    <div class="card-body">
+                        <div class="text-primary fs-2 mb-3">🛠️</div>
+                        <h5 class="card-title fw-bold">Filières sur-mesure</h5>
+                        <p class="card-text text-muted">Du Génie Logiciel aux Réseaux, découvrez les programmes d'études détaillés et leurs débouchés sur le marché.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3 rounded-4">
+                    <div class="card-body">
+                        <div class="text-success fs-2 mb-3">🏛️</div>
+                        <h5 class="card-title fw-bold">Fiches Établissements</h5>
+                        <p class="card-text text-muted">Consultez la liste des universités et instituts de formation qui dispensent vos filières favorites.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-3 rounded-4">
+                    <div class="card-body">
+                        <div class="text-warning fs-2 mb-3">⚡</div>
+                        <h5 class="card-title fw-bold">Gestion Simplifiée</h5>
+                        <p class="card-text text-muted">Un back-office complet permet aux administrateurs de mettre à jour les contenus pédagogiques en temps réel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

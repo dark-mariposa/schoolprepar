@@ -1,9 +1,61 @@
 {% extends 'front/base.html.twig' %}
 
-{% block title %}Détails de la filière{% endblock %}
+{% block title %}{{ filiere.nom|default('Filière') }} - Detail - SchoolPrepar{% endblock %}
 
 {% block body %}
-    <h1>Détails de la filière #{{ id }}</h1>
-    <p>Ici s'afficheront les descriptions, débouchés et conditions d'admission.</p>
-    <a href="{{ path('app_filiere_index') }}">Retour à la liste</a>
+    <div class="mb-4">
+        <a href="{{ path('app_front_filiere_index') }}" class="btn btn-sm btn-light border rounded-pill px-3 fw-semibold text-secondary">
+            ⬅️ Retour aux filières
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5">
+        <div class="bg-primary p-4 text-white d-flex justify-content-between align-items-center">
+            <div>
+                <span class="badge bg-white text-primary text-uppercase font-monospace px-3 py-1 mb-2 rounded-pill fw-bold">
+                    Fiche d'orientation
+                </span>
+                <h1 class="fw-extrabold m-0 display-6">{{ filiere.nom }}</h1>
+            </div>
+            <div class="bg-white bg-opacity-10 p-3 rounded-3 fs-1">
+                {% if "Logiciel" in filiere.nom or "Informatique" in filiere.nom %}
+                    💻
+                {% elseif "Réseaux" in filiere.nom or "Télécom" in filiere.nom %}
+                    🌐
+                {% else %}
+                    📚
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card-body p-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold text-dark mb-3">🎯 Description du programme</h4>
+                    <p class="text-muted lead fs-6 lh-base">
+                        {{ filiere.description|default('Aucune description détaillée n\'est disponible pour cette filière pour le moment.') }}
+                    </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="p-4 bg-light rounded-4 border border-light h-100">
+                        <h5 class="fw-bold text-dark mb-4">💼 Débouchés professionnels</h5>
+                        
+                        <p class="text-secondary small mb-0">
+                            {{ filiere.debouches|default('Les diplômés de cette formation s\'insèrent rapidement dans le tissu économique local et international sur des postes d\'exécution et d\'encadrement technique.') }}
+                        </p>
+                        
+                        <hr class="my-4 text-muted opacity-15">
+                        
+                        <h5 class="fw-bold text-dark mb-3">📊 Informations clés</h5>
+                        <ul class="list-unstyled mb-0 small text-muted">
+                            <li class="mb-2">⏱️ <strong>Durée :</strong> 3 ans (6 Semestres)</li>
+                            <li class="mb-2">🎓 <strong>Diplôme :</strong> Licence Professionnelle</li>
+                            <li>🌍 <strong>Reconnaissance :</strong> Régionale & CAMES</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
