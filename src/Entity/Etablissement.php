@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EtablissementRepository::class)]
 class Etablissement
@@ -17,18 +18,23 @@ class Etablissement
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(min: 3, max: 255, minMessage: "Le nom doit faire au moins {{ limit }} caractères.")]
     private ?string $return = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(min: 3, max: 255, minMessage: "Le nom doit faire au moins {{ limit }} caractères.")]
     private ?string $relation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, max: 255, minMessage: "Le nom doit faire au moins {{ limit }} caractères.")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, max: 255, minMessage: "La ville doit faire au moins {{ limit }} caractères.")]
     private ?string $ville = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, max: 255, minMessage: "Le type doit faire au moins {{ limit }} caractères.")]
     private ?string $type = null;
 
     #[ORM\Column(type: Types::TEXT)]

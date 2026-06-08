@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription - SchoolPrepar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #4e73df 0%, #224abe 100%); min-height: 100vh; }
+        .card { border: none; border-radius: 1rem; }
+        .form-check-input:checked { background-color: #4e73df; border-color: #4e73df; }
+    </style>
+</head>
+<body class="d-flex align-items-center py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-1 fw-bold text-gray-800">📝 Créer un compte</h1>
+                        <p class="text-muted small">Inscrivez-vous pour accéder à l'application SchoolPrepar</p>
+                    </div>
+
+                    {{ form_errors(registrationForm) }}
+
+                    {{ form_start(registrationForm) }}
+                        
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-bold">Nom d'utilisateur / Email</label>
+                            {{ form_widget(registrationForm.username, {
+                                'attr': {
+                                    'class': 'form-control form-control-lg fs-6',
+                                    'placeholder': 'Ex: admin@schoolprepar.tg'
+                                }
+                            }) }}
+                            <div class="text-danger small mt-1">{{ form_errors(registrationForm.username) }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-bold">Mot de passe</label>
+                            {{ form_widget(registrationForm.plainPassword, {
+                                'attr': {
+                                    'class': 'form-control form-control-lg fs-6',
+                                    'placeholder': '••••••••'
+                                }
+                            }) }}
+                            <div class="text-danger small mt-1">{{ form_errors(registrationForm.plainPassword) }}</div>
+                        </div>
+
+                        <div class="form-check mb-4 text-start">
+                            {{ form_widget(registrationForm.agreeTerms, {
+                                'attr': {'class': 'form-check-input'}
+                            }) }}
+                            <label class="form-check-label small text-muted" for="{{ registrationForm.agreeTerms.vars.id }}">
+                                J'accepte les conditions d'utilisation du site
+                            </label>
+                            <div class="text-danger small mt-1">{{ form_errors(registrationForm.agreeTerms) }}</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100 rounded-pill fs-6 fw-bold shadow-sm mb-3">
+                            <i class="fas fa-user-plus me-2"></i>S'inscrire
+                        </button>
+                        
+                        <div class="text-center">
+                            <a href="{{ path('app_login') }}" class="text-decoration-none small">Déjà inscrit ? Connectez-vous</a>
+                        </div>
+
+                    {{ form_end(registrationForm) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

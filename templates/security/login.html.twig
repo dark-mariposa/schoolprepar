@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion - SchoolPrepar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #4e73df 0%, #224abe 100%); min-height: 100vh; }
+        .card { border: none; border-radius: 1rem; }
+    </style>
+</head>
+<body class="d-flex align-items-center py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-1 fw-bold text-gray-800">🏫 SchoolPrepar</h1>
+                        <p class="text-muted small">Espace d'administration</p>
+                    </div>
+
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger p-2 small"><i class="fas fa-exclamation-circle me-2"></i>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="alert alert-info p-2 small mb-3">
+                                Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="fw-bold">Déconnexion</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="inputUsername" class="form-label text-secondary small fw-bold">Adresse Email / Identifiant</label>
+                            <input type="text" value="{{ last_username }}" name="_username" id="inputUsername" class="form-control form-control-lg fs-6" autocomplete="username" required autofocus placeholder="admin@schoolprepar.tg">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="inputPassword" class="form-label text-secondary small fw-bold">Mot de passe</label>
+                            <input type="password" name="_password" id="inputPassword" class="form-control form-control-lg fs-6" autocomplete="current-password" required placeholder="••••••••">
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <button class="btn btn-primary btn-lg w-100 rounded-pill fs-6 fw-bold shadow-sm mb-3" type="submit">
+                            <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+                        </button>
+                        
+                        <div class="text-center">
+                            <a href="{{ path('app_register') }}" class="text-decoration-none small">Pas encore de compte ? Créer un compte</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
