@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
@@ -13,38 +14,76 @@ class Evenement
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $return = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $relation = null;
+    private ?string $titre = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateDebut = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'evenements')]
+    private ?Etablissement $etablissement = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReturn(): ?string
+    public function getTitre(): ?string
     {
-        return $this->return;
+        return $this->titre;
     }
 
-    public function setReturn(?string $return): static
+    public function setTitre(string $titre): static
     {
-        $this->return = $return;
+        $this->titre = $titre;
 
         return $this;
     }
 
-    public function getRelation(): ?string
+    public function getDateDebut(): ?\DateTimeInterface
     {
-        return $this->relation;
+        return $this->dateDebut;
     }
 
-    public function setRelation(string $relation): static
+    public function setDateDebut(\DateTimeInterface $dateDebut): static
     {
-        $this->relation = $relation;
+        $this->dateDebut = $dateDebut;
 
         return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getEtablissement(): ?Etablissement
+    {
+        return $this->etablissement;
+    }
+
+    public function setEtablissement(?Etablissement $etablissement): static
+    {
+        $this->etablissement = $etablissement;
+
+        return $this;
+    }
+
+    /**
+     * Sécurité pour l'affichage de l'événement en texte
+     */
+    public function __toString(): string
+    {
+        return $this->titre ?? 'Événement sans titre';
     }
 }

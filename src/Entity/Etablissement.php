@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\EtablissementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EtablissementRepository::class)]
@@ -18,6 +21,36 @@ class Etablissement
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $relation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ville = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    /**
+     * @var Collection<int, Filiere>
+     */
+    #[ORM\ManyToMany(targetEntity: Filiere::class, mappedBy: 'etablissements')]
+    private Collection $filieres;
+
+    /**
+     * @var Collection<int, Evenement>
+     */
+    #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'etablissement')]
+    private Collection $evenements;
+
+    public function __construct()
+    {
+        $this->filieres = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -47,4 +80,115 @@ class Etablissement
 
         return $this;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): static
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Filiere>
+     */
+    public function getFilieres(): Collection
+    {
+        return $this->filieres;
+    }
+
+    public function addFiliere(Filiere $filiere): static
+    {
+        if (!$this->filieres->contains($filiere)) {
+            $this->filieres->add($filiere);
+            $filiere->addEtablissement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFiliere(Filiere $filiere): static
+    {
+        if ($this->filieres->removeElement($filiere)) {
+            $filiere->removeEtablissement($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evenement>
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    public function addEvenement(Evenement $evenement): static
+    {
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements->add($evenement);
+            $evenement->setEtablissement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenement(Evenement $evenement): static
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getEtablissement() === $this) {
+                $evenement->setEtablissement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom; // Permet à Symfony d'afficher le nom de l'école dans les listes déroulantes
+    }
+
 }
